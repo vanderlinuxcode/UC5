@@ -38,7 +38,8 @@ public class vendaLanches {
 			pdv.close();
 			return;
 		}
-
+		
+		//declaração de variáveis de controle
 		String nomeHamburguer = "";
 		String nomeBebida = "";
 		String nomeFritura = "";

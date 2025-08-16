@@ -1,1 +1,36 @@
 
+ 🍔 Sistema de Venda de Lanches em Java
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Status](https://img.shields.io/badge/Projeto-Concluído-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/Licença-MIT-blue?style=for-the-badge)
+
+Sistema simples de vendas para uma lanchonete, desenvolvido em Java. O cliente escolhe itens do cardápio
+via terminal e recebe um resumo completo do pedido. Ideal para fins didáticos ou como base para sistemas maiores.
+---
+
+## 📁 Estrutura do Projeto
+
+```plaintext
+venda-lanches/
+├── src/
+│   └── lanchonete/
+│       └── vendaLanches.java
+├── README.md
+
+🛠 Funcionalidades
+🔢 Geração automática de número de comanda
+
+📋 Exibição de cardápio com códigos
+
+👤 Entrada de nome do cliente
+
+🍔 Escolha de hambúrguer, refresco e fritura
+
+✅ Validação de código de hambúrguer
+
+⏱ Simulação de preparo do pedido com Thread.sleep
+
+🧾 Resumo final com todos os itens comprados
+
+Vanderli Reis

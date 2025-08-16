@@ -38,8 +38,7 @@ public class vendaLanches {
 			pdv.close();
 			return;
 		}
-		
-		//declaração de variáveis de controle
+
 		String nomeHamburguer = "";
 		String nomeBebida = "";
 		String nomeFritura = "";
@@ -234,12 +233,54 @@ public class vendaLanches {
 		Thread.sleep(500);
 
 		System.out.println("\n=======================================");
+		System.out.println(" PAGAMENTO ");
+		System.out.println("=======================================");
+
+		// Simula valor total (exemplo: cada item custa R$10)
+		double valorHamburguer = quantHamburg * 10.0;
+		double valorBebida = quantBebida * 5.0;
+		double valorFritura = quantFritura * 7.0;
+		double total = valorHamburguer + valorBebida + valorFritura;
+		double troco = 0.0;
+		
+
+		System.out.printf(" Total a pagar: R$ %.2f\n", total);
+		System.out.print(" Informe valor recebido: R$ ");
+		double recebido = pdv.nextDouble();
+
+		if (recebido < total) {
+		    System.out.println(" Valor insuficiente. Venda cancelada.");
+		} else {
+		    troco = recebido - total;
+		    System.out.printf(" Troco: R$ %.2f\n", troco);
+		    System.out.println(" Pagamento aprovado. Venda finalizada.");
+		}
+
+		System.out.println("\n=======================================");
 		System.out.println(" Comanda Nº: " + comanda);
 		System.out.println(" Cliente: " + nome);
 		System.out.printf(" Pedido: %s (%d) %s (%d) %s (%d)\n", nomeHamburguer,quantHamburg,nomeBebida,quantBebida,nomeFritura,quantFritura);
 		System.out.println(" Obrigado por escolher nossa lanchonete!");
 		System.out.println("=========================================\n");
+		System.out.println("\n=======================================");
+		System.out.println(" NOTA FISCAL ");
+		System.out.println("=======================================");
+		System.out.printf(" Cliente: %s\n", nome);
+		System.out.printf(" Comanda Nº: %d\n", comanda);
+		System.out.println("---------------------------------------");
+		System.out.printf(" %s x%d - R$ %.2f\n", nomeHamburguer, quantHamburg, valorHamburguer);
+		System.out.printf(" %s x%d - R$ %.2f\n", nomeBebida, quantBebida, valorBebida);
+		System.out.printf(" %s x%d - R$ %.2f\n", nomeFritura, quantFritura, valorFritura);
+		System.out.println("---------------------------------------");
+		System.out.printf(" TOTAL: R$ %.2f\n", total);
+		System.out.printf(" Valor Recebido: R$ %.2f\n", recebido);
+		System.out.printf(" Troco: R$ %.2f\n", troco);
+		System.out.println("=======================================");
+		System.out.println(" Obrigado pela preferência!");
+		System.out.println("=======================================\n");
 
 		pdv.close();
 	}
 }
+
+

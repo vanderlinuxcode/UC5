@@ -1,0 +1,22 @@
+# Pastas de compilação
+/bin/
+build/
+target/
+
+# Arquivos de configuração do Eclipse
+.classpath
+.project
+.settings/
+
+# Arquivos temporários e de sistema
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Arquivos gerados por testes ou builds
+*.class
+*.jar
+*.war
+*.ear

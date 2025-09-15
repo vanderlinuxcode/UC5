@@ -13,7 +13,7 @@ public class Conexao {
         try {
             // Estabelecendo a conexão
             Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
-           System.out.println("Conexão bem-sucedida!");
+           System.out.println("\n\nConexão bem-sucedida!");
             return conn;
         } catch (SQLException infor) {
             System.err.println("Erro de conexão: " + infor.getMessage());

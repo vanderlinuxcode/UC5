@@ -97,7 +97,8 @@ public class CadastroUsuario {
 	            PreparedStatement stmt = conn.prepareStatement(sql);
 	            ResultSet rs = stmt.executeQuery();
 
-	            System.out.println("\n\n  Usuários cadastrados:");
+	            System.out.println("\n\n ------ USUÁRIOS CADASTRADOS ------- ");
+	            System.out.println("ID     NOME              EMAIL                               SENHA                                                              TELEFONE");
 
 	            while (rs.next()) {
 	                int id = rs.getInt("id");
@@ -106,7 +107,8 @@ public class CadastroUsuario {
 	                String senha = rs.getString("senha");
 	                String telefone = rs.getString("telefone");
 	                lista.add(new Object[]{false, id, nome, email, senha, telefone});
-                	System.out.println(id + "- " + nome + " | " + email + " | " + senha + " | " + telefone );
+                	// System.out.println(id + "- " + nome + " | " + email + " | " + senha + " | " + telefone );
+	                System.out.printf("%-4d | %-15s | %-33s | %-15s | %-15s%n", id, nome, email, senha, telefone);
 	            }
 	            
 
@@ -124,7 +126,7 @@ public class CadastroUsuario {
 	
 	public static void main(String[] args) {
 		// Exemplo de cadastro
-		//cadastrarUser("Izabelly Reis", "belinha1@gmail.com", "123bela", "(61) 986542322");
+		//cadastrarUser("Danielle Reis", "danibiote@gmail.com", "dani123", "(61) 98570-5330");
 		//listarUsuarios();
 		listarUsuariosParaTabela();
 	}

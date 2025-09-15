@@ -137,7 +137,7 @@ Listagem em tempo real modo gráfico
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9642092f-87ae-4767-87a6-52829f2e7e1a" />
 
 ## IDE - Eclipse
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c14c8026-bdcd-402e-9a67-3842b539f9d6" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/32e1e93b-c2dd-41ea-bc76-38e763aa27cf" />
 
 ## :computer: Workstation - Host
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fd467513-b6dc-4718-9235-f31f23dafda1" />

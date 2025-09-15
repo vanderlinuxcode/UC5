@@ -21,6 +21,9 @@ GerenciamentoCli/
 - MySQL Server (local ou remoto)
 - Driver JDBC (`mysql-connector-java`)
 - IDE utilizada (Eclipse)
+- S.O VMWare Linux Ubuntu 
+- SGBD mysql-server 
+- mysql-connector-j.jar (conexão com o banco)
 
 ---
 

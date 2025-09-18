@@ -132,5 +132,6 @@ mysql> select * from clientes;
 4 rows in set (0,00 sec)
 
 ## Listando dados através da IDE Eclipse
+
 https://github.com/user-attachments/assets/71d12dfa-5088-4394-88db-22cd701b34ae
 

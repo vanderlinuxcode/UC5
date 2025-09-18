@@ -133,5 +133,6 @@ mysql> select * from clientes;
 
 ## Listando dados através da IDE Eclipse
 
+![Tela de listagem de clientes no Eclipse](SETEMBRO/SGBD/Atividade5/images/eclipse1.png)
 https://github.com/user-attachments/assets/71d12dfa-5088-4394-88db-22cd701b34ae
 

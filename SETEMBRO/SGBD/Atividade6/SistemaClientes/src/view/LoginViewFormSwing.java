@@ -19,7 +19,7 @@ public class LoginViewFormSwing extends JFrame {
     private Map<String, String> usuariosValidos = new HashMap<>();
 
     public LoginViewFormSwing() {
-        setTitle("🔐 Login - Sistema de Clientes");
+        setTitle("Login - Sistema de Clientes");
         setSize(400, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -16,7 +16,8 @@ public class ClienteView {
 	public void exibirMenu() {
 		int opcao;
 		do {
-			System.out.println("--- Sistema de Gerenciamento de Clientes ---");
+			System.out.println("\n");
+			System.out.println("-------- Sistema de Gerenciamento de Clientes ---------");
 			System.out.println("1. Cadastrar Cliente");
 			System.out.println("2. Listar Clientes");
 			System.out.println("3. Atualizar Cliente");
@@ -56,11 +57,11 @@ public class ClienteView {
 	        try {
 	            idade = Integer.parseInt(scanner.nextLine());
 	            if (idade <= 0) {
-	                System.out.println("⚠Idade deve ser maior que zero.");
+	                System.out.println("Idade deve ser maior que zero.");
 	            }
 	        } catch (NumberFormatException e) {
 	            idade = 0;
-	            System.out.println("⚠Idade inválida. Digite um número.");
+	            System.out.println("Idade inválida. Digite um número.");
 	        }
 	    } while (idade <= 0);
 
@@ -69,7 +70,7 @@ public class ClienteView {
 	        System.out.print("Email: ");
 	        email = scanner.nextLine();
 	        if (email.isEmpty() || !email.contains("@")) {
-	            System.out.println("⚠Email inválido. Deve conter '@'.");
+	            System.out.println("Email inválido. Deve conter '@'.");
 	        }
 	    } while (email.isEmpty() || !email.contains("@"));
 

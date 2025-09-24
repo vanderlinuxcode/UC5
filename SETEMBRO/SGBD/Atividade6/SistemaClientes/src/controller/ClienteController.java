@@ -36,14 +36,15 @@ public class ClienteController {
 		}
 	}
 
-	public void listarClientes() {
+	public List<Cliente> listarClientes() {
 		List<Cliente> clientes = dao.listar();
-		System.out.println("\n\n ------ CLIENTES CADASTRADOS ------- ");
+		System.out.println("\n\n --------------------- CLIENTES CADASTRADOS ------------------------- ");
 		System.out.println("ID     NOME          IDADE        EMAIL              TELEFONE          CPF");
 		for (Cliente c : clientes) {
 			System.out.printf("%d | %-15s | %-2d | %-22s | %-15s | %-15s\n", c.getId(), c.getNome(), c.getIdade(),
 					c.getEmail(), c.getTelefone(), c.getCpf());
 		}
+		return clientes;
 	}
 
 	public void atualizarCliente(Cliente cliente) {

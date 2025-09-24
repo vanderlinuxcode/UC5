@@ -16,6 +16,10 @@ public class LoginViewFormSwing extends JFrame {
     public LoginViewFormSwing() {
         // Define título da janela
         setTitle("Login - Sistema de Clientes");
+        setSize(400, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         // Define tamanho e posicionamento
         setSize(420, 250);

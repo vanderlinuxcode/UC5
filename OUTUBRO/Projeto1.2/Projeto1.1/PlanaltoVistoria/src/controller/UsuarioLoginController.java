@@ -13,6 +13,7 @@ public class UsuarioLoginController {
 	private FuncionarioDAO funcionarioDAO;
 	private PainelController painelController;
 	private UsuarioLoginController loginController;
+	private UsuarioModel usuarioLogado;
 	
 	public UsuarioLoginController(Connection conn) {
 		this.usuarioDAO = new UsuarioDAO(conn);
@@ -52,15 +53,26 @@ public class UsuarioLoginController {
 	public void setLoginController(UsuarioLoginController loginController) {
 		this.loginController = loginController;
 	}
+	
+	public UsuarioModel getUsuarioLogado() {
+	    return usuarioLogado;
+	}
 
 	public boolean loginGUI(String cpf, String senhaDigitada) {
-		try {
-			String senhaCriptografada = UsuarioDAO.criptografarSenha(senhaDigitada);
-			UsuarioModel usuario = usuarioDAO.autenticar(cpf, senhaCriptografada);
-			return usuario != null;
-		} catch (Exception e) {
-			System.out.println("Erro na autenticação GUI: " + e.getMessage());
-			return false;
-		}
+	    try {
+	        String senhaCriptografada = UsuarioDAO.criptografarSenha(senhaDigitada);
+	        UsuarioModel usuario = usuarioDAO.autenticar(cpf, senhaCriptografada);
+
+	        if (usuario != null) {
+	            this.usuarioLogado = usuario; // ✅ Agora 'usuario' está definido
+	            return true;
+	        }
+
+	    } catch (Exception e) {
+	        System.out.println("Erro na autenticação GUI: " + e.getMessage());
+	    }
+
+	    return false;
 	}
+
 }

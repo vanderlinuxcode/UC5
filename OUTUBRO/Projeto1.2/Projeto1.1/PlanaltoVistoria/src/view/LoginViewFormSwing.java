@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 
 
 import controller.UsuarioLoginController;
+import model.UsuarioModel;
 
 public class LoginViewFormSwing extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -139,6 +140,10 @@ public class LoginViewFormSwing extends JFrame {
             JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
             dispose();
             // abrir painel principal
+            UsuarioModel usuario = loginController.getUsuarioLogado(); // você precisa guardar isso no loginController
+            PainelPrincipalView painel = new PainelPrincipalView(usuario.getNome(), usuario.getTipo());
+            painel.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(this, "❌ CPF ou senha incorretos.");
         }

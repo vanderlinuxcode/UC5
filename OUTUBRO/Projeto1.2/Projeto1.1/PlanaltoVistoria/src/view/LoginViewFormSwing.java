@@ -64,7 +64,7 @@ public class LoginViewFormSwing extends JFrame {
      * Cria o cabeçalho com título estilizado.
      */
     private JPanel createHeader() {
-        JLabel titulo = new JLabel("Acesso ao Sistema");
+        JLabel titulo = new JLabel("Planalto Vistoria LTDA");
         titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
@@ -119,7 +119,7 @@ public class LoginViewFormSwing extends JFrame {
         JButton btnEntrar = new JButton("Entrar");
         btnEntrar.setFont(new Font("SansSerif", Font.BOLD, 14));
         btnEntrar.setBackground(new Color(0, 120, 215)); // azul
-        btnEntrar.setForeground(Color.WHITE); // texto branco
+        btnEntrar.setForeground(Color.BLACK); // texto branco
         btnEntrar.setFocusPainted(false);
         btnEntrar.setPreferredSize(new Dimension(100, 35));
 

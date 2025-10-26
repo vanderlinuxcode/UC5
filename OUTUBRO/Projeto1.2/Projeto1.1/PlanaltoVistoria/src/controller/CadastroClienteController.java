@@ -41,16 +41,8 @@ public class CadastroClienteController {
             System.out.print("CPF: ");
             String cpf = scanner.nextLine().replaceAll("[^\\d]", ""); // remove tudo que não for número
 
-//            if (!Validador.cpfValido(cpf)) {
-//                System.out.println("❌ CPF inválido.");
-//                System.out.println("CPF limpo: " + cpf);
-//
-//                return;
-//            }
-
             novoCliente.setCpf(cpf);
-                      
-                       
+                             
             System.out.print("Senha: ");
             String senha = scanner.nextLine();
             if (senha.isBlank()) {
@@ -65,13 +57,8 @@ public class CadastroClienteController {
             if (!senha.equals(confirmacao)) {
                 System.out.println("❌ As senhas não coincidem.");
                 return;
-            }
-            
-//            if (!Validador.senhaValida(senha)) {
-//                System.out.println("⚠️ A senha deve ter pelo menos 6 caracteres, com letras e números.");
-//                return;
-//            }
-            
+            }            
+          
             String senhaCriptografada = SegurancaUtils.criptografarSenha(senha);
             novoCliente.setSenha(senhaCriptografada);
            

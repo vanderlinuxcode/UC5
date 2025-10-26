@@ -11,6 +11,7 @@ import exception.CadastroException;
 
 public class UsuarioDAO {
 	private Connection conn;
+	private UsuarioModel  usuarioLogado;
 
 	public UsuarioDAO(Connection conn) {
 		this.conn = conn;
@@ -112,7 +113,7 @@ public class UsuarioDAO {
 	        throw new RuntimeException("Erro ao criptografar senha", e);
 	    }
 	}
-
-
-
+	public UsuarioModel getUsuarioLogado() {
+	    return usuarioLogado;
+	}
 }

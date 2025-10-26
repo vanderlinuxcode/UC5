@@ -10,7 +10,7 @@ public class ConexaoDAO {
     private static final String USUARIO = "root";
     private static final String SENHA = "linux";
 
-    public static Connection conectar() throws SQLException {
+    public static Connection conectar() {
         try {
             //System.out.println("Conectado com sucesso");
             return DriverManager.getConnection(URL, USUARIO, SENHA);

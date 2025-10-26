@@ -1,30 +1,67 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
+
+import controller.UsuarioLoginController;
 
 public class LoginViewFormSwing extends JFrame {
-    private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 1L;
+	// Campos de entrada
     private JTextField cpfField;
     private JPasswordField senhaField;
+    private UsuarioLoginController loginController;
+    
 
-    public LoginViewFormSwing() {
+    // Mapa com usuários válidos simulados
+   // private Map<String, String> usuariosValidos = new HashMap<>();
+
+    public LoginViewFormSwing(java.sql.Connection conn) {
+    	this.loginController = new UsuarioLoginController(conn);
+        // Define título da janela
         setTitle("Login - Sistema de Clientes");
-        setSize(420, 250);
+        setSize(400, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        setLayout(new BorderLayout());
+
+        // Define tamanho e posicionamento
+        setSize(420, 250);
+        setLocationRelativeTo(null); // centraliza na tela
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false); // impede redimensionamento
+
+        // Define cor de fundo da janela
         getContentPane().setBackground(new Color(245, 245, 245));
         setLayout(new BorderLayout());
 
-        add(createHeader(), BorderLayout.NORTH);
-        add(createLoginPanel(), BorderLayout.CENTER);
-        add(createButtonPanel(), BorderLayout.SOUTH);
+        // Adiciona os painéis à janela
+        add(createHeader(), BorderLayout.NORTH);     // título
+        add(createLoginPanel(), BorderLayout.CENTER); // campos
+        add(createButtonPanel(), BorderLayout.SOUTH); // botão
     }
-
+    
+	/**
+     * Cria o cabeçalho com título estilizado.
+     */
     private JPanel createHeader() {
         JLabel titulo = new JLabel("Acesso ao Sistema");
         titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -37,72 +74,86 @@ public class LoginViewFormSwing extends JFrame {
         return header;
     }
 
-    private JPanel createLoginPanel() {
-        JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 40, 10, 40));
+    /**
+     * Cria o painel com campos de usuário e senha.
+     */
+    public JPanel createLoginPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(245, 245, 245));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 8, 8, 8); // espaçamento entre componentes
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        // Rótulo e campo de usuário
         JLabel cpfLabel = new JLabel("CPF:");
-        cpfField = new JTextField();
+        cpfLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        cpfField = new JTextField(20);
 
+        // Rótulo e campo de senha
         JLabel senhaLabel = new JLabel("Senha:");
-        senhaField = new JPasswordField();
+        senhaLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        senhaField = new JPasswordField(20);
 
-        panel.add(cpfLabel);
-        panel.add(cpfField);
-        panel.add(senhaLabel);
-        panel.add(senhaField);
+        // Posiciona os componentes no grid
+        gbc.gridx = 0; gbc.gridy = 0;
+        panel.add(cpfLabel, gbc);
+        gbc.gridx = 1;
+        panel.add(cpfField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        panel.add(senhaLabel, gbc);
+        gbc.gridx = 1;
+        panel.add(senhaField, gbc);
 
         return panel;
     }
 
+    /**
+     * Cria o painel com botão de login.
+     */
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(245, 245, 245));
 
-        JButton loginButton = new JButton("Entrar");
-        loginButton.setFocusPainted(false);
-        loginButton.setBackground(new Color(100, 149, 237));
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        JButton btnEntrar = new JButton("Entrar");
+        btnEntrar.setFont(new Font("SansSerif", Font.BOLD, 14));
+        btnEntrar.setBackground(new Color(0, 120, 215)); // azul
+        btnEntrar.setForeground(Color.WHITE); // texto branco
+        btnEntrar.setFocusPainted(false);
+        btnEntrar.setPreferredSize(new Dimension(100, 35));
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                autenticarUsuario();
-            }
-        });
+        // Ação ao clicar no botão
+        btnEntrar.addActionListener(this::autenticarUsuario);
 
-        panel.add(loginButton);
+        panel.add(btnEntrar);
         return panel;
     }
-
-    private void autenticarUsuario() {
+    
+    private void autenticarUsuario(ActionEvent e) {
         String cpf = cpfField.getText().replaceAll("[^\\d]", "");
         String senha = new String(senhaField.getPassword());
 
-        if (cpf.isBlank() || senha.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        boolean sucesso = loginController.loginGUI(cpf, senha);
 
-        // Aqui você pode integrar com seu controller real
-        // Exemplo fictício de validação:
-        boolean autenticado = cpf.equals("12345678909") && senha.equals("senha123");
-
-        if (autenticado) {
-            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            dispose(); // fecha a tela de login
-            // redirecionar para painel principal...
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
+            dispose();
+            // abrir painel principal
         } else {
-            JOptionPane.showMessageDialog(this, "CPF ou senha incorretos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "❌ CPF ou senha incorretos.");
         }
     }
 
+
+    /**
+     * Método principal para iniciar o sistema.
+     */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            LoginViewFormSwing login = new LoginViewFormSwing();
-            login.setVisible(true);
-        });
-    }
+        // Aplica estilo visual moderno
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+}
 }

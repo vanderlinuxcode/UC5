@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -45,7 +46,7 @@ public class CadastroUsuarioView extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Cadastro de Usuário");
+        setTitle("Cadastro para novos Clientes");
         setSize(400, 320);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +63,11 @@ public class CadastroUsuarioView extends JFrame {
         emailField = new JTextField();
         cpfField = new JTextField();
         senhaField = new JPasswordField();
+        
+        JLabel titulo = new JLabel("Planalto Vistoria LTDA", SwingConstants.CENTER);
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
+        titulo.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+        add(titulo, BorderLayout.NORTH);
 
         formPanel.add(new JLabel("Nome:"));
         formPanel.add(nomeField);
@@ -93,7 +99,6 @@ public class CadastroUsuarioView extends JFrame {
         btnVoltar.setFocusPainted(false);
         btnVoltar.setPreferredSize(new Dimension(130, 35));        
         btnVoltar.addActionListener(e -> voltarParaTelaInicial());
-       // btnVoltar.addActionListener(e -> voltarParaTelaAnterior("inicial"));
 
 
         buttonPanel.add(btnCadastrar);
@@ -137,21 +142,5 @@ public class CadastroUsuarioView extends JFrame {
     private void voltarParaTelaInicial() {
         dispose();
           new TelaInicialView(conn).setVisible(true);
-    }
-    
-//    private void voltarParaTelaAnterior(String origem) {
-//        dispose(); // fecha a tela atual
-//
-//        if ("inicial".equalsIgnoreCase(origem)) {
-//        	dispose(); // fecha a tela atual
-//            //new TelaInicialView(conn).setVisible(true);
-//        	new LoginViewFormSwing(conn).setVisible(true);
-//        } else if ("login".equalsIgnoreCase(origem)) {
-//            new LoginViewFormSwing(conn).setVisible(true);
-//        } else if ("cadastro".equalsIgnoreCase(origem)) {
-//            new CadastroUsuarioView(conn).setVisible(true);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Destino desconhecido: " + origem);
-//        }
-//    }
+    }  
 }

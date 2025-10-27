@@ -15,7 +15,7 @@ public class TelaInicialView extends JFrame {
     }
     
     private void initComponents() {
-        setTitle("Sistema de Clientes");
+        setTitle("Sistema Veicular Vistoria");
         setSize(400, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class TelaInicialView extends JFrame {
         botoesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         botoesPanel.setBackground(new Color(245, 245, 245));
 
-        JButton btnCadastrar = new JButton("Cadastrar Usuário");
+        JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.setFont(new Font("SansSerif", Font.BOLD, 14));
         btnCadastrar.addActionListener(this::abrirCadastro);
 

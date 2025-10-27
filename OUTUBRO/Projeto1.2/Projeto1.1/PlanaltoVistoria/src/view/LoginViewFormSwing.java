@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
+import javax.swing.text.*;
 
 import controller.UsuarioLoginController;
 import model.UsuarioModel;
@@ -38,7 +38,7 @@ public class LoginViewFormSwing extends JFrame {
     public LoginViewFormSwing(java.sql.Connection conn) {
     	this.loginController = new UsuarioLoginController(conn);
         // Define título da janela
-        setTitle("Login - Sistema de Clientes");
+        setTitle("Acesso ao Sistema");
         setSize(400, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,6 +89,9 @@ public class LoginViewFormSwing extends JFrame {
         JLabel cpfLabel = new JLabel("CPF:");
         cpfLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
         cpfField = new JTextField(20);
+        //carrega o método para execução da formatação original CPF
+        ((AbstractDocument) cpfField.getDocument()).setDocumentFilter(new CPFDocumentFilter());
+
 
         // Rótulo e campo de senha
         JLabel senhaLabel = new JLabel("Senha:");
@@ -148,6 +151,56 @@ public class LoginViewFormSwing extends JFrame {
             JOptionPane.showMessageDialog(this, "❌ CPF ou senha incorretos.");
         }
     }
+    
+
+    private class CPFDocumentFilter extends DocumentFilter {
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string == null) return;
+            replace(fb, offset, 0, string, attr);
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            StringBuilder sb = new StringBuilder(currentText);
+            sb.replace(offset, offset + length, text);
+
+            String digits = sb.toString().replaceAll("[^\\d]", "");
+            if (digits.length() > 11) digits = digits.substring(0, 11);
+
+            StringBuilder formatted = new StringBuilder();
+            for (int i = 0; i < digits.length(); i++) {
+                if (i == 3 || i == 6) formatted.append('.');
+                if (i == 9) formatted.append('-');
+                formatted.append(digits.charAt(i));
+            }
+
+            fb.remove(0, doc.getLength());
+            fb.insertString(0, formatted.toString(), attrs);
+        }
+
+        @Override
+        public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            StringBuilder sb = new StringBuilder(currentText);
+            sb.delete(offset, offset + length);
+
+            String digits = sb.toString().replaceAll("[^\\d]", "");
+            StringBuilder formatted = new StringBuilder();
+            for (int i = 0; i < digits.length(); i++) {
+                if (i == 3 || i == 6) formatted.append('.');
+                if (i == 9) formatted.append('-');
+                formatted.append(digits.charAt(i));
+            }
+
+            fb.remove(0, doc.getLength());
+            fb.insertString(0, formatted.toString(), null);
+        }
+    }
+
 
 
     /**

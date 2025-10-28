@@ -140,17 +140,22 @@ public class LoginViewFormSwing extends JFrame {
         boolean sucesso = loginController.loginGUI(cpf, senha);
 
         if (sucesso) {
+            @SuppressWarnings("unused")
+			UsuarioModel usuario = loginController.getUsuarioLogado(); // ✅ agora está definido
+
             JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
             dispose();
-            // abrir painel principal
-            UsuarioModel usuario = loginController.getUsuarioLogado(); // você precisa guardar isso no loginController
-            PainelPrincipalView painel = new PainelPrincipalView(usuario.getNome(), usuario.getTipo());
-            painel.setVisible(true);
 
+            // Se quiser abrir um painel genérico com nome/tipo:
+            // new PainelPrincipalView(usuario.getNome(), usuario.getTipo()).setVisible(true);
+
+            // Mas como o redirecionamento já é feito pelo PainelController,
+            // você pode simplesmente encerrar aqui.
         } else {
             JOptionPane.showMessageDialog(this, "❌ CPF ou senha incorretos.");
         }
     }
+
     
 
     private class CPFDocumentFilter extends DocumentFilter {
